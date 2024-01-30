@@ -1,10 +1,20 @@
 {% extends "layout2.html" %}
 
-{% block container %}
-    <h1>Hola desde alumnos</h1>
-    <h2>Escuela: {{titulo}}</h2>
-
-    {% for nombre in nombres %}
-        <h3>{{nombre}}</h3>
-    {% endfor %}
+{% block content %}
+{% import "_macros.html" as macros %}
+<h1>Hola desde alumnos!</h1>
+<form action="">
+    <div class="row control-group">
+        <div class="form-group col-xd-12 floating-label-form-group controls">
+            {{macros.camposNuevos(form.nombre, class='form-control')}}
+        </div>
+        <div class="form-group col-xd-12 floating-label-form-group controls">
+            {{macros.camposNuevos(form.primerApellido, class='form-control')}}
+        </div>
+        <div class="form-group col-xd-12 floating-label-form-group controls">
+            {{macros.camposNuevos(form.segundoApellido, class='form-control')}}
+        </div>
+        <input type="submit" id="submit" name="submit" value="Registrar">
+    </div>
+</form>
 {% endblock %}
