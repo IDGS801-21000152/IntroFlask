@@ -3,18 +3,61 @@
 {% block content %}
 {% import "_macros.html" as macros %}
 <h1>Hola desde alumnos!</h1>
-<form action="">
-    <div class="row control-group">
-        <div class="form-group col-xd-12 floating-label-form-group controls">
-            {{macros.camposNuevos(form.nombre, class='form-control')}}
+<form action="" method="post">
+    <div class="row g-4">
+        <div class="col-md-3">
+            {{
+                macros.camposNuevos(
+                    form.nombre, 
+                    class='form-control'
+                )
+            }}
         </div>
-        <div class="form-group col-xd-12 floating-label-form-group controls">
-            {{macros.camposNuevos(form.primerApellido, class='form-control')}}
+
+        <div class="col-md-3">
+            {{
+                macros.camposNuevos(
+                    form.primerApellido, 
+                    class='form-control'
+                )
+            }}
         </div>
-        <div class="form-group col-xd-12 floating-label-form-group controls">
-            {{macros.camposNuevos(form.segundoApellido, class='form-control')}}
+
+        <div class="col-md-3">
+            {{
+                macros.camposNuevos(
+                    form.segundoApellido, 
+                    class='form-control'
+                )
+            }}
         </div>
-        <input type="submit" id="submit" name="submit" value="Registrar">
+
+        <div class="col-md-3">
+            {{
+                macros.camposNuevos(
+                    form.edad,
+                    class='form-control'
+                )
+            }}
+        </div>
+
+        <div class="col-md-3">
+            {{
+                macros.camposNuevos(
+                    form.correo,
+                    class='form-control'
+                )
+            }}
+        </div>
+
+        <div class="col-12">
+            <button type="submit" class="btn btn-secondary">
+                Registrar
+            </button>
+        </div>
     </div>
 </form>
+<h1>Nombre: {{nombre}}</h1>
+<h2>Primer Apellido: {{primerApellido}}</h1>
+<h2>Segundo Apelido: {{segundoApellido}}</h1>
 {% endblock %}

@@ -1,12 +1,14 @@
 from wtforms import Form
-from wtforms import StringField, TelField, IntegerField
+from wtforms import StringField, IntegerField
 from wtforms import EmailField
-# Aquí de los validadores importamos el dato obligatorio y el email
-from wtforms.validators import DataRequired, Email
+from wtforms import validators
 
 class UserForm(Form):
-    nombre = StringField('nombre')
+    nombre = StringField('nombre', [
+        validators.DataRequired(message = 'Campo requerido'),
+        validators.length(min=4, max=10, message='Ingresa un nombre valido')
+    ])
     primerApellido = StringField('primer apellido')
     segundoApellido = StringField('segundo apellido')
-    correo = EmailField('email')
+    correo = EmailField('email', [ validators.Email(message='Ingresa un correo valido')])
     edad = IntegerField('edad')
