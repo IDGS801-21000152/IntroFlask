@@ -1,7 +1,25 @@
 from flask import Flask, render_template, request
+from flask import flash
+from flask import g
+from flask_wtf.csrf import CSRFProtect
 import forms
 
 app = Flask(__name__)
+app.secret_key = 'pepePEPEpepe'
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
+
+@app.before_request
+def before_request():
+    g.nombre = "Menso"
+    print("before 1")
+    
+@app.after_request
+def after_request(response):
+    print("after 3")
+    return response
 
 ## Ruta de index
 @app.route("/")
@@ -11,6 +29,7 @@ def index():
 ## Ruta para alumnos
 @app.route("/alumnos", methods=["GET", "POST"])
 def alumnos():
+    print ("ola {}".format(g.nombre))
     nombre = ''
     primerApellido = ''
     segundoApellido = ''
@@ -23,8 +42,10 @@ def alumnos():
         segundoApellido = alumno_class.segundoApellido.data
         correo = alumno_class.correo.data
         edad = alumno_class.correo.data
-        print('Nombre: {}, Primer Apellido: {}, Segundo Apellido: {}, Correo: {}, Edad: {}'.format(nombre, primerApellido, segundoApellido, correo, edad))
-    
+        
+        mensaje='Bienvenido {}'.format(nombre)
+        flash(mensaje)
+
     return render_template("alumnos.html", form=alumno_class, nombre = nombre, primerApellido = primerApellido, segundoApellido = segundoApellido, correo = correo, edad = edad)
 
 ## Ruta para profesores

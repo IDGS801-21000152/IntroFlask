@@ -19,19 +19,19 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active p-2" aria-current="page" href="#">
+                        <a class="nav-link active p-2" aria-current="page" href="/">
                             <span class="material-symbols-outlined">home</span>
                             Inicio
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link disabled p-2" href="#">
+                        <a class="nav-link disabled p-2" href="/usuario">
                             <span class="material-symbols-outlined">person</span>
                             Usuarios
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link disabled" href="#">
+                        <a class="nav-link" href="/alumnos">
                             <span class="material-symbols-outlined">School</span>
                             Alumnos
                         </a>
@@ -42,6 +42,15 @@
     </nav>
 
     <div class="container pt-3 ms-1">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-success" role="alert">
+                        {{message}}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
         {%block content%}
 
         {%endblock%}
